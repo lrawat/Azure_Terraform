@@ -23,7 +23,7 @@ resource "azurerm_resource_group" "rc_gp" {
 }
 resource "azurerm_storage_account" "sibatf2" {
   name                     = "sibatf2"
-  resource_group_name      = "terraform_traingroup-1"
+  resource_group_name      = azurerm_resource_group.rc_gp.name
   location                 = var.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
@@ -33,7 +33,7 @@ resource "azurerm_storage_account" "sibatf2" {
 
 resource "azurerm_storage_container" "data1" {
   name                  = "data1"
-  storage_account_name  = azurerm_storage_account.sibatf2.name
+  storage_account_id    = azurerm_storage_account.sibatf2.id
   container_access_type = "private"
   depends_on = [ azurerm_storage_account.sibatf2, azurerm_resource_group.rc_gp ]
 }
