@@ -1,1 +1,20 @@
-my name is siba.
+git remote add origin  - The git remote command lets you create, view, and delete connections to other repositories. Remote connections are more like bookmarks rather than direct links into other repositories. Instead of providing real-time access to another repository, they serve as convenient names that can be used to reference a not-so-convenient URL.
+ 
+git init - it is used to create new git repository.Executing git init creates a .git subdirectory in the current working directory, which contains all of the necessary Git metadata for the new repository.
+
+
+git status - displays the state of the working directory and the staging area. It lets you see which changes have been staged, which haven’t, and which files aren’t being tracked by Git. 
+
+git add . - adds a change in the working directory to the staging area.It tells Git that you want to include updates to a particular file in the next commit. 
+
+git commit -m "terraform file"- captures a snapshot of the project's currently staged changes. 
+
+git push origin main 
+
+git pull - The git pull command is used to fetch and download content from a remote repository and immediately update the local repository to match that content.
+
+git fetch - The git fetch command downloads commits, files, and refs from a remote repository into your local repo. You can consider git fetch the 'safe' version of the two commands. It will download the remote content but not update your local repo's working state, leaving your current work intact. 
+
+git branch - In Git, a branch is like a separate workspace where you can make changes and try new ideas without affecting the main project.
+
+git merge - combining the changes from one branch into another.
