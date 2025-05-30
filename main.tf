@@ -121,3 +121,29 @@ resource "azurerm_windows_virtual_machine" "sibatestvm" {
   }
   depends_on = [ azurerm_network_interface.azinterface, azurerm_public_ip.public_ip, azurerm_subnet.subnet1, azurerm_resource_group.rc_gp, azurerm_availability_set.sibaavset]
 }
+resource "azurerm_network_security_group" "nsg_rule" {
+  name = "nsg_rule"
+  location = var.location
+  resource_group_name = azurerm_resource_group.rc_gp.name
+
+security_rule {
+    name                       = "nsg_rule"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+  
+}
+
+resource "azurerm_network_interface_security_group_association" "nic_attach" {
+  network_interface_id = azurerm_network_interface.azinterface.id
+  network_security_group_id = azurerm_network_security_group.nsg_rule.id
+
+  depends_on = [ azurerm_network_security_group.nsg_rule, azurerm_network_interface.azinterface, azurerm_resource_group.rc_gp  ]
+  
+}
